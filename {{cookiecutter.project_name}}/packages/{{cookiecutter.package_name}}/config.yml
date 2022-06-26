@@ -1,1 +1,19 @@
 package_name: { { cookiecutter.package_name } }
+
+# LOCAL DATA FILES
+raw_data: raw_data
+processed_data: processed_data
+process_log_file: process.log
+
+# VARIABLE SPECIFICATIONS
+primary_dependent_variables:
+  - target
+
+variables_to_include:
+  - var_1
+  - var_2
+  - var_3
+  - var_4
+
+# PARAMETER SETTINGS
+random_state: 42
