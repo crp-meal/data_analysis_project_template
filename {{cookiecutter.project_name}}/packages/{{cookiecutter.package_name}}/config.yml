@@ -1,4 +1,4 @@
-package_name: { { cookiecutter.package_name } }
+package_name: {{cookiecutter.package_name}}
 
 # LOCAL DATA FILES
 raw_data: raw_data
