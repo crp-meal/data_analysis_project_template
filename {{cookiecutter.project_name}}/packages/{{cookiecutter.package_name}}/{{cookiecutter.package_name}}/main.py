@@ -2,6 +2,7 @@ from {{cookiecutter.package_name}} import __version__ as _version
 from {{cookiecutter.package_name}}.config.config import config
 from {{cookiecutter.package_name}}.config.logging import ProcessLogger
 
+ProcessLogger = ProcessLogger(__name__)
 
 def main():
     ProcessLogger.processLogger.info(f" =============== Starting process with version: {_version} ===============")
