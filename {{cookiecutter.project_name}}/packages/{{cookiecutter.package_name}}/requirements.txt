@@ -5,12 +5,12 @@ ruamel.yaml==0.16.12
 typing_extensions>=3.7.4,<3.8.0
 
 # Data related
-numpy>=1.20.0,<1.21.0
-pandas>=1.2.0,<1.3.0
-scikit-learn>=0.24.0,<0.25.0
+numpy>=1.23.0
+pandas>=1.4.3
+scikit-learn>=1.1.1
 xlrd>=1.0.0
 openpyxl>=3
-xlsxwriter
+xlsxwriter>=3.0.3
 
 # Styling
 pytest>=6.2.3,<6.3.0
