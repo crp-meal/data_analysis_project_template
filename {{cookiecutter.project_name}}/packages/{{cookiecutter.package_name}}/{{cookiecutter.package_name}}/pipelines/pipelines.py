@@ -8,7 +8,7 @@ preprocessing_pipeline = Pipeline(
     [
         (
             "Preprocessing pipeline step One",
-            print("Preprocessing step one")
+            pp.ColumnLabelNormalizer()
         ),
         (
             "Preprocessing pipeline Step Two",

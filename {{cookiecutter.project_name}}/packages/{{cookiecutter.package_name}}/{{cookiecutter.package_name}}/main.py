@@ -10,7 +10,8 @@ def main():
     ProcessLogger.processLogger.info(f" =============== Starting process with version: {_version} ===============")
 
     raw_data = DataManager.load_csv(file_name=config.package_config.raw_data)
-    DataManager.export_excel(data=raw_data, file_name=config.package_config.processed_data)
+    processed_data = pipelines.preprocessing_pipeline.fit_transform(raw_data)
+    DataManager.export_excel(data=processed_data, file_name=config.package_config.processed_data)
 
     return 0
 

@@ -4,6 +4,9 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 from typing import List
 
+
+
+############### PREPROCESSING UNIT TEMPLATE ##################
 class PreprocessorUnitTemplate(BaseEstimator, TransformerMixin):
     def __init__(self, variables: List[str]) -> None:
         '''
@@ -30,4 +33,35 @@ class PreprocessorUnitTemplate(BaseEstimator, TransformerMixin):
         X = X.copy()
         # YOUR CODE HERE
 
+        return X
+###############################################################
+
+
+#############################
+#### PREPROCESSING UNITS ####
+#############################
+
+
+class ColumnLabelNormalizer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        '''
+        Input: None, iterates over all dataframe columns.
+        Normalizes column labels:
+            - remove whitespace
+            - spaces to _
+            - full lowercase
+            - remove clutter (ex. ;,.)
+        
+        
+        '''
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+        
+        X = X.copy()
+        X.columns = [var.lower() for var in X.columns]
+        X.columns = [var.replace(' ', '_') for var in X.columns]
+        
         return X
