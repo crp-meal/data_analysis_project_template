@@ -2,6 +2,7 @@ from sklearn.pipeline import Pipeline
 
 from processing import preprocessors as pp
 from processing import analyzers as analyze
+from visualization import graphing
 
 ### DATA PREPROCESSING
 preprocessing_pipeline = Pipeline(
@@ -18,15 +19,15 @@ preprocessing_pipeline = Pipeline(
 )
 
 
-### DATA FILTERING AND VARIABLE SELECTION
-filtering_pipeline = Pipeline(
+### OUTPUT GENERATION PIPELINE
+output_pipeline = Pipeline(
     [
         (
-            "Filtering pipeline step One",
-            print('Step one')
+            "Output pipeline step One",
+            graphing.ProduceGraphsPrototype('target', ['v18q', 'v14a'])
         ),
         (
-            "Filtering pipeline Step Two",
+            "Output pipeline Step Two",
             print('Step two')
         )
     ]

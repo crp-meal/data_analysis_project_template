@@ -65,3 +65,23 @@ class ColumnLabelNormalizer(BaseEstimator, TransformerMixin):
         X.columns = [var.replace(' ', '_') for var in X.columns]
         
         return X
+
+
+class ExtractSubsetVariables(BaseEstimator, TransformerMixin):
+    def __init__(self, variables: List[str]):
+        ''' Extracts selected variables only. '''
+
+        if not isinstance(variables, list):
+            raise ValueError("variables must be given as elements of list.")
+        
+        self.variables = variables
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+        
+        X = X.copy()
+        X = X[self.variables]
+
+        return X

@@ -19,6 +19,8 @@ def main():
     processed_data = pipelines.preprocessing_pipeline.fit_transform(raw_data)
     DataManager.export_excel(data=processed_data, file_name=config.package_config.processed_data)
 
+    pipelines.output_pipeline(processed_data)
+
     return 0
 
 
