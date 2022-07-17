@@ -1,3 +1,5 @@
+from {{cookiecutter.package_name}}.config import config
+
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -109,7 +111,7 @@ class Grapher:
         figure = go.Figure(data=data, layout=generate_standard_graph_layout(title=title, show_legend=legend))
 
         if export==True:
-            figure.write_image(f"./graphical_output/{variable}_by_{group_variable}.png", scale=2)
+            figure.write_image(f"{config.OUTPUT_DIR}/graphical_output/{variable}_by_{group_variable}.png", scale=2)
 
         return figure
 

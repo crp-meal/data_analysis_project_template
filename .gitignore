@@ -129,5 +129,4 @@ dmypy.json
 .pyre/
 
 # Outputs
-graphical_output/
 *.png

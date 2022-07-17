@@ -24,7 +24,7 @@ output_pipeline = Pipeline(
     [
         (
             "Output pipeline step One",
-            graphing.ProduceGraphsPrototype('target', ['v18q', 'v14a'])
+            graphing.ProduceGraphsPrototype('target', ['v18q', 'v14a']) #TODO: move variable specifications to config yml
         ),
         (
             "Output pipeline Step Two",
