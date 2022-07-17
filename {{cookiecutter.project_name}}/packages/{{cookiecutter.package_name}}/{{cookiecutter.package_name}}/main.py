@@ -1,7 +1,7 @@
 from {{cookiecutter.package_name}} import __version__ as _version
 from {{cookiecutter.package_name}}.config.config import config
 from {{cookiecutter.package_name}}.config.logging import ProcessLogger
-from {{cookiecutter.package_name}}.processing.data_manager import DataManager
+from {{cookiecutter.package_name}}.processing.data_management import DataManager
 from {{cookiecutter.package_name}}.pipelines import pipelines
 
 ProcessLogger = ProcessLogger(__name__)
