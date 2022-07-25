@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from typing import List
+from sklearn.feature_selection import VarianceThreshold
 
 
 
@@ -30,5 +31,30 @@ class AnalyzerUnitTemplate(BaseEstimator, TransformerMixin):
         '''
         X = X.copy()
         # YOUR CODE HERE
+
+        return X
+
+class VarianceThresholdRemover(BaseEstimator, TransformerMixin):
+    ''' Identifies and removes variables with 0 variance. '''
+    def __init__(self, variance_threshold: float):
+        if not isinstance(variance_threshold, float):
+            raise ValueError('Variance threshold must be an integer.')
+        
+        self.variance_threshold = variance_threshold
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame, y: pd.Series = None):
+        X = X.copy()
+
+        variance_selector = VarianceThreshold(threshold=self.variance_threshold)
+        variance_selector.fit(X)
+        constants = X.columns[~variance_selector.get_support()]
+
+        #TODO: Implement logging functionality: which variables are removed and which are kept?
+
+        X = X.drop(constants, axis=1)
+        print(constants)
 
         return X
