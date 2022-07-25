@@ -85,3 +85,48 @@ class ExtractSubsetVariables(BaseEstimator, TransformerMixin):
         X = X[self.variables]
 
         return X
+
+'''
+### RESTRUCTURE THIS:
+### FOR EXPORTING TABULATIONS
+tabulations = {}
+for dependent_variable in dependent_variables:
+    print('*', dependent_variable)
+    tabulations[dependent_variable] = []
+    tabulations[dependent_variable].append(pd.DataFrame(df[dependent_variable].value_counts(normalize=True).round(2).sort_index()))
+    for independent_variable in independent_variables:
+        print('--',independent_variable)
+        tabulations[dependent_variable].append(pd.DataFrame(df.groupby(independent_variable)[dependent_variable].value_counts(normalize=True).round(2).sort_index()).rename(columns={'target': 'ratio'}))
+        #tabulations[dependent_variable].append(independent_variable)
+
+
+writer = pd.ExcelWriter('pandas_multiple.xlsx', engine='xlsxwriter')
+workbook=writer.book
+
+merge_format = workbook.add_format({
+    'bold': 1,
+    'border': 1,
+    'align': 'center',
+    'valign': 'vcenter',
+    'fg_color': 'yellow'})
+
+
+spaces = 3
+
+for dependent_variable in tabulations.keys():
+    row = 1
+    worksheet=workbook.add_worksheet(dependent_variable)
+    writer.sheets[dependent_variable] = worksheet
+    
+    for distribution in tabulations[dependent_variable]:
+        if len(distribution.index.names)>1:
+            worksheet.merge_range(row-1, 0, row-1, len(distribution.index.names), f"{dependent_variable} by {distribution.index.names[0]}", merge_format)
+        else:
+            worksheet.merge_range(row-1, 0, row-1, len(distribution.index.names), f"{dependent_variable}", merge_format)
+        distribution.to_excel(writer, sheet_name=dependent_variable, startrow=row , startcol=0)
+        row = row + len(distribution.index) + spaces + 1
+        
+#writer.save()
+#workbook.close()
+writer.close()
+'''
